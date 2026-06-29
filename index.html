@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pecomex - Prototipo ComexFlow</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section class="login-screen" id="loginScreen">
+      <div class="login-visual">
+        <div class="brand login-brand">
+          <div class="brand-mark">PX</div>
+          <div>
+            <strong>Pecomex</strong>
+            <span>Agencia de despacho aduanero</span>
+          </div>
+        </div>
+
+        <div class="login-copy">
+          <p class="eyebrow">Plataforma operativa</p>
+          <h1>Seguimiento claro para cada despacho.</h1>
+          <p>
+            Expedientes, documentos, estados SOFIA/VUI, costos y mensajes al cliente
+            desde un solo panel.
+          </p>
+        </div>
+
+        <div class="shipment-art" aria-hidden="true">
+          <div class="port-card">
+            <span>Origen</span>
+            <strong>Shenzhen</strong>
+          </div>
+          <div class="route-line">
+            <i></i>
+            <b></b>
+          </div>
+          <div class="port-card accent">
+            <span>Destino</span>
+            <strong>Asuncion</strong>
+          </div>
+          <div class="mini-status">
+            <span>Estado</span>
+            <strong>En SOFIA</strong>
+          </div>
+        </div>
+      </div>
+
+      <form class="login-card" id="loginForm">
+        <div>
+          <p class="eyebrow">Acceso Pecomex</p>
+          <h2>Inicio de sesion</h2>
+        </div>
+
+        <label>
+          <span>Correo</span>
+          <input type="email" value="operaciones@pecomex.com.py" autocomplete="email" />
+        </label>
+
+        <label>
+          <span>Contrasena</span>
+          <input type="password" value="123456" autocomplete="current-password" />
+        </label>
+
+        <div class="role-picker" aria-label="Seleccionar rol">
+          <button class="active" type="button" data-role="Operaciones">Operaciones</button>
+          <button type="button" data-role="Despachante">Despachante</button>
+          <button type="button" data-role="Cliente">Cliente</button>
+        </div>
+
+        <button class="primary-button login-submit" type="submit">Entrar a la plataforma</button>
+
+        <div class="client-note">
+          <strong>Portal para importadores</strong>
+          <span>El cliente puede ver avances, subir documentos y aprobar costos sin llamar al equipo.</span>
+        </div>
+      </form>
+    </section>
+
+    <div class="app-shell is-hidden" id="appShell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">PX</div>
+          <div>
+            <strong>Pecomex</strong>
+            <span>Comercio exterior</span>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Secciones">
+          <button class="nav-item active" type="button" data-view="dashboard">Panel</button>
+          <button class="nav-item" type="button" data-view="shipments">Expedientes</button>
+          <button class="nav-item" type="button" data-view="documents">Documentos</button>
+          <button class="nav-item" type="button" data-view="tracking">SOFIA / VUI</button>
+          <button class="nav-item" type="button" data-view="costs">Costos</button>
+          <button class="nav-item" type="button" data-view="clients">Clientes</button>
+          <button class="nav-item" type="button" data-view="tasks">Tareas</button>
+          <button class="nav-item" type="button" data-view="portal">Portal cliente</button>
+        </nav>
+
+        <div class="sidebar-summary">
+          <span>Operaciones activas</span>
+          <strong>42</strong>
+          <p>9 expedientes requieren documentos o aprobacion del cliente.</p>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Lunes, 29 de junio</p>
+            <h1>Control operativo de despachos</h1>
+          </div>
+          <div class="topbar-actions">
+            <div class="user-chip">
+              <span id="activeRoleLabel">Operaciones</span>
+              <strong>PX</strong>
+            </div>
+            <button class="icon-button" type="button" aria-label="Buscar" title="Buscar">B</button>
+            <button class="icon-button alert" type="button" aria-label="Alertas" title="Alertas">!</button>
+            <button class="secondary-button" type="button">Solicitar docs</button>
+            <button class="primary-button" type="button">Nuevo expediente</button>
+            <button class="secondary-button" id="logoutButton" type="button">Salir</button>
+          </div>
+        </header>
+
+        <section class="view active" id="dashboard">
+          <div class="metrics-grid">
+            <article class="metric warning">
+              <span>En riesgo</span>
+              <strong>9</strong>
+              <small>Faltan documentos o permisos</small>
+            </article>
+            <article class="metric">
+              <span>Despachos activos</span>
+              <strong>42</strong>
+              <small>Importacion, exportacion y transito</small>
+            </article>
+            <article class="metric blue">
+              <span>Liberados esta semana</span>
+              <strong>18</strong>
+              <small>7 canal verde, 6 naranja, 5 rojo</small>
+            </article>
+            <article class="metric danger">
+              <span>Costos por aprobar</span>
+              <strong>Gs. 86M</strong>
+              <small>6 clientes pendientes</small>
+            </article>
+          </div>
+
+          <div class="dashboard-layout">
+            <section class="panel main-panel">
+              <div class="panel-header">
+                <div>
+                  <h2>Expedientes prioritarios</h2>
+                  <p>Operaciones con documentos, permisos o pagos pendientes.</p>
+                </div>
+                <div class="segmented">
+                  <button class="active" type="button">Todos</button>
+                  <button type="button">Riesgo</button>
+                  <button type="button">Liberados</button>
+                </div>
+              </div>
+
+              <div class="shipment-table">
+                <div class="table-head">
+                  <span>Operacion</span>
+                  <span>Cliente</span>
+                  <span>Estado</span>
+                  <span>ETA</span>
+                  <span>Responsable</span>
+                </div>
+
+                <article class="table-row">
+                  <div>
+                    <strong>IMP-2026-0718</strong>
+                    <span>Repuestos automotrices - BL HLCU882194</span>
+                  </div>
+                  <span>Importadora Guarani</span>
+                  <span class="status warning">En VUI</span>
+                  <span>30 Jun</span>
+                  <span>Laura</span>
+                </article>
+
+                <article class="table-row">
+                  <div>
+                    <strong>IMP-2026-0721</strong>
+                    <span>Equipos medicos - AWB 044-938211</span>
+                  </div>
+                  <span>MedSupply PY</span>
+                  <span class="status danger">Falta permiso</span>
+                  <span>Hoy</span>
+                  <span>Rodrigo</span>
+                </article>
+
+                <article class="table-row">
+                  <div>
+                    <strong>EXP-2026-0334</strong>
+                    <span>Semillas seleccionadas - CRT 550921</span>
+                  </div>
+                  <span>Agro Sur S.A.</span>
+                  <span class="status good">Liberado</span>
+                  <span>Cerrado</span>
+                  <span>Diego</span>
+                </article>
+
+                <article class="table-row">
+                  <div>
+                    <strong>IMP-2026-0730</strong>
+                    <span>Textiles - Contenedor MSKU771203</span>
+                  </div>
+                  <span>Moda Centro</span>
+                  <span class="status blue">En SOFIA</span>
+                  <span>01 Jul</span>
+                  <span>Laura</span>
+                </article>
+              </div>
+            </section>
+
+            <aside class="panel side-panel">
+              <div class="panel-header compact">
+                <h2>Alertas de hoy</h2>
+                <button class="icon-button small" type="button" aria-label="Filtrar" title="Filtrar">=</button>
+              </div>
+              <div class="alert-list">
+                <article>
+                  <strong>2 permisos previos sin respuesta</strong>
+                  <span>MedSupply PY y Quimica Central</span>
+                </article>
+                <article>
+                  <strong>3 clientes no aprobaron costos</strong>
+                  <span>Almacenaje puede aumentar manana</span>
+                </article>
+                <article>
+                  <strong>4 carpetas sin certificado de origen</strong>
+                  <span>Solicitar por WhatsApp antes de las 16:00</span>
+                </article>
+              </div>
+              <button class="whatsapp-button" type="button">Enviar actualizaciones</button>
+            </aside>
+          </div>
+
+          <div class="process-strip">
+            <article>
+              <span>Documentos recibidos</span>
+              <strong>31</strong>
+            </article>
+            <article>
+              <span>En VUI</span>
+              <strong>12</strong>
+            </article>
+            <article>
+              <span>En SOFIA</span>
+              <strong>17</strong>
+            </article>
+            <article>
+              <span>Liberados</span>
+              <strong>18</strong>
+            </article>
+          </div>
+        </section>
+
+        <section class="view" id="shipments">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>Expedientes</h2>
+                <p>Cada operacion con cliente, carga, documentos, estado y responsable.</p>
+              </div>
+              <button class="primary-button" type="button">Crear expediente</button>
+            </div>
+
+            <div class="toolbar">
+              <input type="search" placeholder="Buscar por expediente, BL, cliente o contenedor" aria-label="Buscar expediente" />
+              <select aria-label="Tipo de operacion">
+                <option>Todos los tipos</option>
+                <option>Importacion</option>
+                <option>Exportacion</option>
+                <option>Transito</option>
+              </select>
+              <select aria-label="Estado">
+                <option>Todos los estados</option>
+                <option>En VUI</option>
+                <option>En SOFIA</option>
+                <option>Falta documento</option>
+                <option>Liberado</option>
+              </select>
+            </div>
+
+            <div class="case-grid">
+              <article>
+                <span>IMP-2026-0718</span>
+                <strong>Importadora Guarani</strong>
+                <p>Repuestos automotrices, 1 contenedor, puerto Villeta.</p>
+                <b class="status warning">En VUI</b>
+              </article>
+              <article>
+                <span>IMP-2026-0721</span>
+                <strong>MedSupply PY</strong>
+                <p>Equipos medicos, carga aerea, permiso sanitario pendiente.</p>
+                <b class="status danger">Falta permiso</b>
+              </article>
+              <article>
+                <span>EXP-2026-0334</span>
+                <strong>Agro Sur S.A.</strong>
+                <p>Semillas seleccionadas, frontera terrestre, documentacion completa.</p>
+                <b class="status good">Liberado</b>
+              </article>
+              <article>
+                <span>IMP-2026-0730</span>
+                <strong>Moda Centro</strong>
+                <p>Textiles, control documental en proceso, canal pendiente.</p>
+                <b class="status blue">En SOFIA</b>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="documents">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>Checklist documental</h2>
+                <p>Documentos requeridos por operacion y cliente antes de declarar.</p>
+              </div>
+              <button class="secondary-button" type="button">Copiar solicitud</button>
+            </div>
+
+            <div class="document-layout">
+              <section class="document-card">
+                <span>IMP-2026-0721</span>
+                <strong>MedSupply PY</strong>
+                <p>Equipos medicos con permiso previo pendiente. Riesgo de retraso y almacenaje.</p>
+                <button class="whatsapp-button inline" type="button">Solicitar por WhatsApp</button>
+              </section>
+
+              <div class="checklist">
+                <article class="done"><span></span><strong>Factura comercial</strong><b>Recibido</b></article>
+                <article class="done"><span></span><strong>Packing list</strong><b>Recibido</b></article>
+                <article class="done"><span></span><strong>AWB / BL / CRT</strong><b>Recibido</b></article>
+                <article class="pending"><span></span><strong>Permiso previo</strong><b>Pendiente</b></article>
+                <article class="pending"><span></span><strong>Certificado de origen</strong><b>Pendiente</b></article>
+                <article class="done"><span></span><strong>Mandato / autorizacion</strong><b>Recibido</b></article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="tracking">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>Seguimiento SOFIA / VUI</h2>
+                <p>Visibilidad operativa sin reemplazar los sistemas oficiales.</p>
+              </div>
+              <button class="secondary-button" type="button">Actualizar estado</button>
+            </div>
+
+            <div class="timeline">
+              <article class="done">
+                <span></span>
+                <div>
+                  <strong>Documentos recibidos</strong>
+                  <p>Factura, packing list y AWB validados por operaciones.</p>
+                </div>
+              </article>
+              <article class="done">
+                <span></span>
+                <div>
+                  <strong>Carga en VUI</strong>
+                  <p>Solicitud enviada para permiso previo.</p>
+                </div>
+              </article>
+              <article class="active">
+                <span></span>
+                <div>
+                  <strong>Declaracion en SOFIA</strong>
+                  <p>Despachante revisando datos antes de presentar.</p>
+                </div>
+              </article>
+              <article>
+                <span></span>
+                <div>
+                  <strong>Canal asignado</strong>
+                  <p>Pendiente de respuesta.</p>
+                </div>
+              </article>
+              <article>
+                <span></span>
+                <div>
+                  <strong>Liberado</strong>
+                  <p>Cliente recibe aviso y documentos finales.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="costs">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>Costeo estimado</h2>
+                <p>Tributos, honorarios, tasas, almacenaje y gastos logisticos por expediente.</p>
+              </div>
+              <button class="primary-button" type="button">Enviar aprobacion</button>
+            </div>
+
+            <div class="cost-layout">
+              <section class="total-card">
+                <span>IMP-2026-0718</span>
+                <strong>Gs. 38.450.000</strong>
+                <p>Total estimado sujeto a canal, almacenaje y verificacion documental.</p>
+              </section>
+              <div class="cost-list">
+                <article><span>Tributos estimados</span><strong>Gs. 26.800.000</strong></article>
+                <article><span>Honorarios Pecomex</span><strong>Gs. 3.500.000</strong></article>
+                <article><span>Tasas y terminal</span><strong>Gs. 5.150.000</strong></article>
+                <article><span>Almacenaje proyectado</span><strong>Gs. 3.000.000</strong></article>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="clients">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>Clientes importadores</h2>
+                <p>Historial, operaciones activas, documentos frecuentes y deuda.</p>
+              </div>
+              <button class="primary-button" type="button">Nuevo cliente</button>
+            </div>
+
+            <div class="client-grid">
+              <article><strong>Importadora Guarani</strong><span>8 operaciones activas</span><b class="status warning">Costos pendientes</b></article>
+              <article><strong>MedSupply PY</strong><span>3 operaciones activas</span><b class="status danger">Permiso pendiente</b></article>
+              <article><strong>Agro Sur S.A.</strong><span>5 operaciones activas</span><b class="status good">Al dia</b></article>
+              <article><strong>Moda Centro</strong><span>6 operaciones activas</span><b class="status blue">En revision</b></article>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="tasks">
+          <div class="panel">
+            <div class="panel-header">
+              <div>
+                <h2>Tareas internas</h2>
+                <p>Coordinacion entre operaciones, despachante, facturacion y mensajeria.</p>
+              </div>
+              <button class="primary-button" type="button">Nueva tarea</button>
+            </div>
+
+            <div class="kanban">
+              <section>
+                <h3>Pendiente</h3>
+                <article><strong>Pedir certificado de origen</strong><span>IMP-2026-0721</span></article>
+                <article><strong>Confirmar pago de tasas</strong><span>IMP-2026-0718</span></article>
+              </section>
+              <section>
+                <h3>En proceso</h3>
+                <article><strong>Cargar solicitud VUI</strong><span>Rodrigo</span></article>
+                <article><strong>Revisar clasificacion arancelaria</strong><span>Laura</span></article>
+              </section>
+              <section>
+                <h3>Revision</h3>
+                <article><strong>Control final SOFIA</strong><span>Despachante asignado</span></article>
+              </section>
+              <section>
+                <h3>Cerrado</h3>
+                <article><strong>Enviar documentos finales</strong><span>Agro Sur S.A.</span></article>
+              </section>
+            </div>
+          </div>
+        </section>
+
+        <section class="view" id="portal">
+          <div class="panel portal-panel">
+            <div class="panel-header">
+              <div>
+                <h2>Vista del cliente</h2>
+                <p>Una version simple para que el importador vea avances y responda rapido.</p>
+              </div>
+              <button class="secondary-button" type="button">Copiar link</button>
+            </div>
+
+            <div class="portal-layout">
+              <section class="portal-status">
+                <span>Operacion activa</span>
+                <strong>IMP-2026-0718</strong>
+                <p>Su despacho se encuentra en VUI. Falta aprobacion de costos para continuar.</p>
+                <button class="primary-button" type="button">Aprobar costos</button>
+              </section>
+              <section class="portal-feed">
+                <article><strong>Hoy 10:30</strong><span>Pecomex solicito certificado de origen.</span></article>
+                <article><strong>Ayer 16:05</strong><span>Factura comercial y packing list recibidos.</span></article>
+                <article><strong>Ayer 09:10</strong><span>Expediente creado y asignado a operaciones.</span></article>
+              </section>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
