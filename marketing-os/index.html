@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Nexo - Inteligencia de marketing</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <section class="login" id="login">
+    <div class="login-story">
+      <div class="brand"><span class="brand-mark">N</span><div><strong>Nexo</strong><small>Marketing Intelligence</small></div></div>
+      <div class="story-copy">
+        <p class="eyebrow">Marketing bajo control</p>
+        <h1>De campañas dispersas a decisiones claras.</h1>
+        <p>Conecta tus canales, mide el impacto financiero y recibe recomendaciones accionables con inteligencia artificial.</p>
+      </div>
+      <div class="insight-preview">
+        <div><span>Inversion del mes</span><strong>Gs. 18.450.000</strong></div>
+        <div class="signal">+24% retorno</div>
+        <p><b>Nexo IA</b> detecto que Instagram genera clientes a menor costo que tus otras plataformas.</p>
+      </div>
+    </div>
+    <form class="login-panel" id="loginForm">
+      <p class="eyebrow">Bienvenido</p>
+      <h2>Ingresa a tu espacio</h2>
+      <p class="muted">Visualiza el marketing de tu empresa en un solo lugar.</p>
+      <label>Correo corporativo<input type="email" value="direccion@empresa.com.py" required></label>
+      <label>Contrasena<input type="password" value="12345678" required></label>
+      <div class="roles" aria-label="Elegir perfil">
+        <button class="active" type="button">Direccion</button><button type="button">Marketing</button><button type="button">Agencia</button>
+      </div>
+      <button class="primary wide" type="submit">Ingresar a Nexo</button>
+      <small class="demo-note">Prototipo: utiliza cualquier correo y contrasena.</small>
+    </form>
+  </section>
+
+  <div class="app hidden" id="app">
+    <aside>
+      <div class="brand inverse"><span class="brand-mark">N</span><div><strong>Nexo</strong><small>Marketing Intelligence</small></div></div>
+      <div class="company"><span>Empresa activa</span><strong>Casa Central Py</strong><button title="Cambiar empresa">⌄</button></div>
+      <nav>
+        <button class="nav active" data-view="resumen"><span>⌂</span>Resumen</button>
+        <button class="nav" data-view="campanas"><span>◎</span>Campanas</button>
+        <button class="nav" data-view="objetivos"><span>◇</span>Objetivos y KPIs</button>
+        <button class="nav" data-view="finanzas"><span>₲</span>Impacto financiero</button>
+        <button class="nav" data-view="equipo"><span>♙</span>Equipo</button>
+        <button class="nav" data-view="ia"><span>✦</span>Nexo IA <i>3</i></button>
+      </nav>
+      <div class="profile"><span>RM</span><div><strong>Rafael Martinez</strong><small>Direccion</small></div><button id="logout" title="Cerrar sesion">↪</button></div>
+    </aside>
+
+    <main>
+      <header><div><p class="eyebrow">Panel general</p><h2 id="pageTitle">Buenos dias, Rafael</h2></div><div class="header-actions"><select><option>Ultimos 30 dias</option><option>Este trimestre</option></select><button class="icon" title="Notificaciones">♢<b></b></button><button class="primary" id="newCampaign">+ Nueva campana</button></div></header>
+
+      <section class="view active" id="resumen">
+        <div class="notice"><span>✦</span><div><strong>Tu resumen inteligente esta listo</strong><p>La facturacion atribuida a marketing crecio 18% este mes. Hay 2 oportunidades para mejorar el retorno.</p></div><button data-go="ia">Ver analisis</button></div>
+        <div class="metric-grid">
+          <article class="metric"><span>Inversion total</span><strong>Gs. 18,45 M</strong><small class="up">↑ 8,4% vs. periodo anterior</small></article>
+          <article class="metric"><span>Ingresos atribuidos</span><strong>Gs. 72,8 M</strong><small class="up">↑ 18,1% vs. periodo anterior</small></article>
+          <article class="metric"><span>ROAS promedio</span><strong>3,95x</strong><small class="up">↑ 0,32 puntos</small></article>
+          <article class="metric"><span>Nuevos clientes</span><strong>128</strong><small>Gs. 144.140 por cliente</small></article>
+        </div>
+        <div class="dashboard-grid">
+          <article class="panel performance"><div class="panel-head"><div><h3>Rendimiento general</h3><p>Inversion e ingresos atribuidos</p></div><div class="legend"><span><i class="blue"></i>Inversion</span><span><i class="green"></i>Ingresos</span></div></div><div class="chart" id="chart"></div><div class="x-axis"><span>1 Oct</span><span>8 Oct</span><span>15 Oct</span><span>22 Oct</span><span>31 Oct</span></div></article>
+          <article class="panel channels"><div class="panel-head"><div><h3>Canales</h3><p>Retorno por plataforma</p></div><button class="link" data-go="campanas">Ver campanas</button></div>
+            <div class="channel"><span class="platform meta">f</span><div><strong>Meta Ads</strong><small>Gs. 9,2 M invertidos</small></div><b>4,6x</b></div>
+            <div class="channel"><span class="platform google">G</span><div><strong>Google Ads</strong><small>Gs. 6,8 M invertidos</small></div><b>3,8x</b></div>
+            <div class="channel"><span class="platform tiktok">♪</span><div><strong>TikTok Ads</strong><small>Gs. 2,4 M invertidos</small></div><b class="warn">2,1x</b></div>
+          </article>
+          <article class="panel goals"><div class="panel-head"><div><h3>Objetivos del mes</h3><p>Avance de los principales KPIs</p></div><button class="link" data-go="objetivos">Gestionar</button></div>
+            <div class="goal"><div><strong>Ingresos por marketing</strong><span>Gs. 72,8 M / 80 M</span></div><progress value="91" max="100"></progress><small>91%</small></div>
+            <div class="goal"><div><strong>Nuevos clientes</strong><span>128 / 150</span></div><progress value="85" max="100"></progress><small>85%</small></div>
+            <div class="goal"><div><strong>ROAS objetivo</strong><span>3,95x / 4,2x</span></div><progress value="94" max="100"></progress><small>94%</small></div>
+          </article>
+          <article class="panel activity"><div class="panel-head"><div><h3>Actividad del equipo</h3><p>Ultimos cambios</p></div></div><ul><li><span>LS</span><p><b>Laura</b> ajusto el presupuesto de Black Friday<small>Hace 24 min</small></p></li><li><span>DM</span><p><b>Diego</b> agrego el reporte semanal<small>Hace 2 h</small></p></li><li><span>IA</span><p><b>Nexo IA</b> genero 3 recomendaciones<small>Hace 4 h</small></p></li></ul></article>
+        </div>
+      </section>
+
+      <section class="view" id="campanas"><div class="section-title"><div><h2>Campanas multicanal</h2><p>Compara y administra todos tus esfuerzos publicitarios.</p></div><button class="primary">+ Nueva campana</button></div><div class="filter-row"><input placeholder="Buscar campana..."><select><option>Todas las plataformas</option><option>Meta Ads</option><option>Google Ads</option></select><select><option>Todos los estados</option><option>Activa</option><option>Pausada</option></select></div><div class="table-wrap"><table><thead><tr><th>Campana</th><th>Plataforma</th><th>Estado</th><th>Inversion</th><th>Resultados</th><th>Costo/resultado</th><th>ROAS</th></tr></thead><tbody><tr><td><b>Ventas Black Friday</b><small>Conversiones</small></td><td>Meta Ads</td><td><span class="status active">Activa</span></td><td>Gs. 4.800.000</td><td>76 compras</td><td>Gs. 63.158</td><td><b>5,2x</b></td></tr><tr><td><b>Busqueda productos</b><small>Ventas web</small></td><td>Google Ads</td><td><span class="status active">Activa</span></td><td>Gs. 3.450.000</td><td>48 compras</td><td>Gs. 71.875</td><td><b>4,1x</b></td></tr><tr><td><b>Reconocimiento verano</b><small>Alcance</small></td><td>TikTok Ads</td><td><span class="status review">Revisar</span></td><td>Gs. 2.400.000</td><td>840.200 vistas</td><td>Gs. 2,85</td><td><b>2,1x</b></td></tr><tr><td><b>Remarketing catalogo</b><small>Conversiones</small></td><td>Meta Ads</td><td><span class="status paused">Pausada</span></td><td>Gs. 1.920.000</td><td>29 compras</td><td>Gs. 66.207</td><td><b>3,7x</b></td></tr></tbody></table></div></section>
+
+      <section class="view" id="objetivos"><div class="section-title"><div><h2>Objetivos y KPIs</h2><p>Conecta la estrategia de marketing con metas concretas.</p></div><button class="primary">+ Crear objetivo</button></div><div class="objective-grid"><article class="objective"><span class="tag">VENTAS</span><h3>Facturar Gs. 80 millones</h3><p>Ingresos atribuidos a campanas digitales durante noviembre.</p><strong>91%</strong><progress value="91" max="100"></progress><footer><span>Actual: Gs. 72,8 M</span><span>Faltan 8 dias</span></footer></article><article class="objective"><span class="tag teal">ADQUISICION</span><h3>Conseguir 150 clientes nuevos</h3><p>Primera compra de clientes captados por canales pagos.</p><strong>85%</strong><progress value="85" max="100"></progress><footer><span>Actual: 128 clientes</span><span>Faltan 22</span></footer></article><article class="objective"><span class="tag amber">EFICIENCIA</span><h3>Mantener CAC bajo Gs. 150.000</h3><p>Costo promedio de adquisicion entre todos los canales.</p><strong>En meta</strong><progress value="96" max="100"></progress><footer><span>Actual: Gs. 144.140</span><span>Saludable</span></footer></article></div></section>
+
+      <section class="view" id="finanzas"><div class="section-title"><div><h2>Impacto financiero</h2><p>Traduce el rendimiento publicitario al lenguaje del negocio.</p></div><button class="secondary">Exportar reporte</button></div><div class="metric-grid"><article class="metric"><span>ROI de marketing</span><strong>294,6%</strong><small class="up">Retorno neto estimado</small></article><article class="metric"><span>Costo de adquisicion</span><strong>Gs. 144.140</strong><small class="up">↓ 6,2% este mes</small></article><article class="metric"><span>Valor promedio de venta</span><strong>Gs. 568.750</strong><small>3,95 veces el CAC</small></article><article class="metric"><span>Margen atribuible</span><strong>Gs. 23,7 M</strong><small>Despues de marketing</small></article></div><article class="panel finance-table"><h3>Rentabilidad por canal</h3><table><thead><tr><th>Canal</th><th>Inversion</th><th>Ingresos</th><th>Margen estimado</th><th>ROAS</th><th>Decision sugerida</th></tr></thead><tbody><tr><td><b>Meta Ads</b></td><td>Gs. 9,2 M</td><td>Gs. 42,3 M</td><td>Gs. 15,1 M</td><td>4,6x</td><td><span class="decision grow">Aumentar inversion</span></td></tr><tr><td><b>Google Ads</b></td><td>Gs. 6,8 M</td><td>Gs. 25,8 M</td><td>Gs. 7,2 M</td><td>3,8x</td><td><span class="decision">Mantener</span></td></tr><tr><td><b>TikTok Ads</b></td><td>Gs. 2,4 M</td><td>Gs. 5,0 M</td><td>Gs. 1,4 M</td><td>2,1x</td><td><span class="decision warning">Optimizar</span></td></tr></tbody></table></article></section>
+
+      <section class="view" id="equipo"><div class="section-title"><div><h2>Equipo de marketing</h2><p>Todos alineados con los mismos datos y objetivos.</p></div><button class="primary">+ Invitar miembro</button></div><div class="team-grid"><article class="member"><span>RM</span><h3>Rafael Martinez</h3><p>Direccion</p><small>Acceso total</small></article><article class="member"><span>LS</span><h3>Laura Sanchez</h3><p>Marketing interno</p><small>Campanas y reportes</small></article><article class="member"><span>DM</span><h3>Diego Medina</h3><p>Agencia externa</p><small>Campanas asignadas</small></article><article class="member invite"><b>+</b><h3>Sumar colaborador</h3><p>Invita a tu equipo o agencia</p></article></div></section>
+
+      <section class="view" id="ia"><div class="section-title"><div><h2>Nexo IA</h2><p>Analisis y recomendaciones basadas en tus resultados.</p></div></div><div class="ai-layout"><div class="recommendations"><article class="recommendation high"><div><span>ALTO IMPACTO</span><small>Detectado hoy</small></div><h3>Redistribuye parte del presupuesto hacia Instagram</h3><p>Instagram Stories presenta un costo por compra 31% menor que Facebook Feed. Mover Gs. 800.000 podria generar entre 9 y 14 compras adicionales.</p><footer><button class="primary">Ver plan de accion</button><button class="secondary">Descartar</button></footer></article><article class="recommendation"><div><span>OPORTUNIDAD</span><small>Detectado ayer</small></div><h3>Google Ads pierde conversiones despues de las 20:00</h3><p>El gasto nocturno representa 18% del presupuesto, pero solo aporta 6% de las ventas. Ajusta el horario para proteger el retorno.</p><footer><button class="primary">Ver plan de accion</button><button class="secondary">Descartar</button></footer></article></div><aside class="assistant"><div class="ai-head"><span>✦</span><div><strong>Pregunta a Nexo</strong><small>Analiza los datos de tu empresa</small></div></div><div class="messages" id="messages"><div class="bot">Hola, Rafael. Puedo explicarte el rendimiento, comparar campanas o ayudarte a preparar el proximo presupuesto.</div></div><form id="aiForm"><input id="aiInput" placeholder="Ej.: ¿Donde deberia invertir mas?"><button>↑</button></form><div class="suggestions"><button>Resume mi mes</button><button>¿Por que bajo el ROAS?</button></div></aside></div></section>
+    </main>
+  </div>
+  <div class="modal hidden" id="modal"><form class="modal-card" id="campaignForm"><button type="button" class="close">×</button><p class="eyebrow">Nueva campana</p><h2>Planifica una campana</h2><label>Nombre<input required placeholder="Ej. Promocion de verano"></label><label>Plataforma<select><option>Meta Ads</option><option>Google Ads</option><option>TikTok Ads</option></select></label><label>Presupuesto<input required placeholder="Gs. 3.000.000"></label><button class="primary wide">Guardar campana</button></form></div>
+  <script src="script.js"></script>
+</body>
+</html>
+
